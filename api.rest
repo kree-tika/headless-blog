@@ -1,0 +1,2 @@
+GET http://127.0.0.1:1337/api/blogs?populate=Thumbnail.data&select=slug&filters[slug][$eq]=home-1
+Authorization: Bearer ae4bfa8479422ec2f535fd0fd27caace8cbaaf53cf7fc83fba695522b14329cb589fccfa471533a00e64f79cfa047baf8a5ac9ea24538c316c2ed2fe2bf483409a0c43f9d23e65fdf5f41f9fc62cf962937a046590beba43fa1b62438a4a6983ec3a14c3cf386da58eb9536abc60902d44b379acde22b953a7814d1238145b43

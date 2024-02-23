@@ -1,23 +1,43 @@
 import fetchBlogs from "@/fetchBlog";
 import config from "@/config";
 
-const BlogDetails = async (props) => {
-  const blogs = await fetchBlogs(`&filter[slug][$eq]=${props.params.slug}`);
-  // console.log(`${props.params.slug}`);
-  console.log(blogs.data);
-
+export async function generateMetadata(props) {
+  const blogs = await fetchBlogs(`&filters[slug][$eq]=${props.params.slug}`);
   if (blogs.data.length === 0) return null;
   const blog = blogs.data[0];
+  const Title = blog.attributes.Title;
+  const Summary = blog.attributes.Summary;
+  const Image = `${config.api}${blog.attributes.Thumbnail.data.attributes.url}`;
+  const Content = blog.attributes.Content;
+
+  return {
+    metadataBase: new URL("https://localhost:3000"),
+    title: Title,
+    openGraph: {
+      title: Title,
+      description: Summary,
+      images: Image,
+    },
+    content: Content,
+  };
+}
+
+const BlogDetails = async (props) => {
+  const metaData = await generateMetadata(props);
+  if (!metaData) return null;
+
+  const {
+    title,
+    openGraph: { images },
+    content,
+  } = metaData;
 
   return (
     <>
-      <div className="h1">{blog.attributes.Title}</div>
+      <div className="h1">{title}</div>
       <div className="blog-container">
-        <img
-          src={`${config.api}${blog.attributes.Thumbnail.data.attributes.url}`}
-          alt="Thumbnail"
-        />
-        <p>{extractContent(blog.attributes.Content)}</p>
+        <img src={images} alt="Thumbnail" />
+        <p>{extractContent(content)}</p>
       </div>
     </>
   );
@@ -27,14 +47,8 @@ const extractContent = (contentArray) => {
   if (!contentArray || contentArray.length === 0) {
     return "No content available";
   }
-
-  // Assuming the first item in the "Content" array is a paragraph
   const paragraph = contentArray[0];
-
-  // Assuming the paragraph has "children" property containing text
   const textNode = paragraph.children[0];
-
-  // Assuming the textNode has a "text" property
   return textNode.text || "No content available";
 };
 

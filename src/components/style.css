@@ -1,83 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  @apply box-border m-0 p-0;
 }
 
 .h1 {
-  font-size: 32px;
-  text-align: center;
-  margin: 1rem 0;
+  @apply text-[32px] text-center mx-0 my-4;
 }
 
 .heading {
-  font-size: 24px;
-  align-items: center;
+  @apply text-2xl items-center;
 }
 
 .container {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  margin: 0 2.5rem;
-  gap: 2rem;
+  @apply grid grid-cols-[1fr_1fr_1fr] gap-8 mx-10 my-0;
 }
 
 .box {
-  border-radius: 20px;
-  /* border: 2px solid green; */
-  padding-bottom: 1rem;
-  box-shadow: 10px 40px 50px rgba(229, 233, 246, 0.4);
-  width: 400px;
-  margin: 40px 0;
+  @apply shadow-[10px_40px_50px_rgba(229,233,246,0.4)] w-[400px] mx-0 my-10 pb-4 rounded-[20px]; /* border: 2px solid green; */
 }
 
 .box img {
-  border-top-right-radius: 20px;
-  border-top-left-radius: 20px;
+  @apply rounded-t-[20px];
 }
 
 .blog-content {
-  margin: 1.5rem;
+  @apply m-6;
 }
 
 .blog-container {
-  margin: 2rem 4rem;
+  @apply mx-16 my-8;
 }
 
 .blog-container p {
-  margin: 2rem 0;
+  @apply mx-0 my-8;
 }
 
 .blog-container img {
-  width: 600px;
-  border-radius: 10px;
+  @apply w-[600px] rounded-[10px];
 }
 
 .blog-content a {
-  text-decoration: none;
-  color: #458ff6;
+  @apply no-underline text-[#458ff6];
 }
 
 .blog-content p {
-  margin-bottom: 1rem;
+  @apply mb-4;
 }
 
 /* Navbar */
 .nav-link {
-  text-decoration: none;
-  text-decoration: none;
-  color: black;
-  font-size: 20px;
-  padding: 2rem;
+  @apply no-underline no-underline text-[black] text-xl p-8;
 }
 
 .nav-links {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @apply flex justify-center items-center;
   background: palegoldenrod;
 }
 
 .nav-links a:hover {
-  color: #fafafa;
+  @apply text-neutral-50;
+}
+
+/* news and events */
+.news-box {
+  @apply shadow-[10px_40px_50px_rgba(229,233,246,0.4)] w-[585px] ml-20 mx-0 my-10 pb-4 rounded-[20px];
+
+  /* border: 2px solid green; */
+}
+.img {
+  @apply h-[400px] flex justify-center;
 }

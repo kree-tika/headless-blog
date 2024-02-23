@@ -18,8 +18,8 @@ export default function Header() {
           <Link href="/blogs" className="nav-link">
             Blogs
           </Link>
-          <Link href="/contactus" className="nav-link">
-            Contact us
+          <Link href="/news" className="nav-link">
+            News and Events
           </Link>
         </div>
       </div>
